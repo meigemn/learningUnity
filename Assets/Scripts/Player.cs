@@ -4,16 +4,18 @@ public class Player : MonoBehaviour
 {
     public float speed = 5;
     private Rigidbody2D rb2D;//Componente de fisicas de unity (salto, movimiento de personaje...)
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private float move;
     public float jumpForce = 4;
     private bool isGrounded;
     public Transform groundCheck;
     public float groundRadius=0.1f;
     public LayerMask groundLayer;
+    private Animator animator;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>(); //acceder al componente de unit
+        rb2D = GetComponent<Rigidbody2D>(); //acceder al componente de unitan
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,6 +32,12 @@ public class Player : MonoBehaviour
         {
             rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, jumpForce);
         }
+
+        animator.SetFloat("Speed", Mathf.Abs(move));//el valor se pone siempre positivo, para que no afecte cuando vas a la izquierda
+        animator.SetFloat("VerticalVelocity", rb2D.linearVelocity.y);//sirve para saber si estamos saltando o cayendo
+        animator.SetBool("IsGrounded", isGrounded);
+        
+
     }
     //Comprobara que esta colisionando con la layer de Floor
     public void FixedUpdate()
