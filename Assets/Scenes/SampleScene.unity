@@ -1018,6 +1018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: character_berie
       objectReference: {fileID: 0}
+    - target: {fileID: 8796611519847027481, guid: 12a011b6ce4e5ec4fbe7246e49b719c5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6fcf59b87242d974090d6056ec4c7f86, type: 2}
     - target: {fileID: 8830880258882125327, guid: 12a011b6ce4e5ec4fbe7246e49b719c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0443
