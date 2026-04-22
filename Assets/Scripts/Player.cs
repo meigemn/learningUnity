@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,6 +12,9 @@ public class Player : MonoBehaviour
     public float groundRadius=0.1f;
     public LayerMask groundLayer;
     private Animator animator;
+    private int coinsCount;
+    public TMP_Text textCoinsCount;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,5 +47,16 @@ public class Player : MonoBehaviour
     public void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
+    }
+
+    //Colisionar con el objeto de tag coin y lo destruye
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Coin"))
+        {
+            Destroy(collision.gameObject);
+            coinsCount++;
+            textCoinsCount.text = coinsCount.ToString();
+        }
     }
 }
