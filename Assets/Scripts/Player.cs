@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -57,6 +58,10 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             coinsCount++;
             textCoinsCount.text = coinsCount.ToString();
+        }
+        if (collision.transform.CompareTag("Spikes"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);//Reinicia la escena
         }
     }
 }
